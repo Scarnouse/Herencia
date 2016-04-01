@@ -20,7 +20,9 @@ public class Coche  extends Vehiculo{
 
 	@Override
 	public String toString() {
-		return "Coche [diesel=" + diesel + ", descapotable=" + descapotable + "]";
+		return "Coche [diesel=" + diesel + ", descapotable=" + descapotable + ", toString()=" + super.toString() + "]";
 	}
+
+	
 	
 }
