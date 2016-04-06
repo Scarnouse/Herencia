@@ -7,6 +7,7 @@ public class Cuadrilatero extends FiguraGeometricas {
 	private int lado2;
 	private int lado3;
 	private int lado4;
+	public static int numeroCuadrilateros =0;
 	
 	public Cuadrilatero(String nombre, int lado1, int lado2, int lado3, int lado4) {
 		super(nombre, 4);
@@ -14,6 +15,7 @@ public class Cuadrilatero extends FiguraGeometricas {
 		this.lado2 = lado2;
 		this.lado3 = lado3;
 		this.lado4 = lado4;
+		numeroCuadrilateros ++;
 	}
 	
 	public int getPerimetro(){
