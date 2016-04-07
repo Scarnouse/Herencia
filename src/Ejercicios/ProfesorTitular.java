@@ -12,7 +12,7 @@ public class ProfesorTitular extends Profesor {
 
 	@Override
 	public String toString() {
-		return "ProfesorTitular [antiguedad=" + antiguedad + ", toString()=" + super.toString() + "]";
+		return super.toString()+"Titular [antiguedad " + antiguedad+ "años]";
 	}
 	
 }

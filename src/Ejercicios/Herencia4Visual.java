@@ -19,8 +19,8 @@ import javax.swing.JButton;
 public class Herencia4Visual {
 
 	private JFrame frame;
-	static ListinProfesores lProfesoresTitulares = new ListinProfesores();
-	static ListinProfesores lProfesoresInterinos = new ListinProfesores();
+	ListinProfesores lista = new ListinProfesores();
+	File file = new File("recursos/profesores.csv");
 	/**
 	 * Launch the application.
 	 */
@@ -34,28 +34,7 @@ public class Herencia4Visual {
 					e.printStackTrace();
 				}
 			}
-		});
-		
-		File file = new File("recursos/profesores.csv");
-		try (Scanner sc = new Scanner(file);){
-			String linea = sc.nextLine();
-			while (sc.hasNextLine()){
-				linea = sc.nextLine();
-				String[] array = linea.split(";");
-
-				if (array[4].contains("SI")){
-					lProfesoresTitulares.addProfesor(new ProfesorTitular(array[0], Integer.parseInt(array[1]), array[2], array[3], Integer.parseInt(array[5])));
-				} else {
-					lProfesoresInterinos.addProfesor(new ProfesorInterino(array[0], Integer.parseInt(array[1]), array[2], array[3], array[6]));
-				}
-				/*for(Profesor profesor : lProfesores.getListin()){
-					System.out.println(profesor);
-				}*/
-			}
-		} catch (FileNotFoundException e) {
-			System.out.format("No se encuentra el archivo %s%n", file);
-		}
-		
+		});		
 	}
 
 	/**
@@ -87,16 +66,45 @@ public class Herencia4Visual {
 		panel.add(titulares);
 		titulares.addActionListener(t -> {
 			cuerpo.setText("");
-			for(Profesor profesor : lProfesoresTitulares.getListin()){
+			lista.getListin().clear();
+			
+			try (Scanner sc = new Scanner(file);){
+				String linea = sc.nextLine();
+				while (sc.hasNextLine()){
+					linea = sc.nextLine();
+					String[] array = linea.split(";");
+					if (array[4].contains("SI")){
+						lista.addProfesor(new ProfesorTitular(array[0], Integer.parseInt(array[1]), array[2], array[3], Integer.parseInt(array[5])));
+					}
+				}
+			} catch (FileNotFoundException e) {
+				System.out.format("No se encuentra el archivo %s%n", file);
+			}
+			for(Profesor profesor : lista.getListin()){
 				cuerpo.append(profesor.toString()+"\n");
 			}
+			
 		});
 		
 		JButton interinos = new JButton("Interinos");
 		panel.add(interinos);
 		interinos.addActionListener(t -> {
 			cuerpo.setText("");
-			for(Profesor profesor : lProfesoresInterinos.getListin()){
+			lista.getListin().clear();
+			File file = new File("recursos/profesores.csv");
+			try (Scanner sc = new Scanner(file);){
+				String linea = sc.nextLine();
+				while (sc.hasNextLine()){
+					linea = sc.nextLine();
+					String[] array = linea.split(";");
+					if (array[4].contains("NO")){
+						lista.addProfesor(new ProfesorInterino(array[0], Integer.parseInt(array[1]), array[2], array[3], array[6]));;
+					}
+				}
+			} catch (FileNotFoundException e) {
+				System.out.format("No se encuentra el archivo %s%n", file);
+			}
+			for(Profesor profesor : lista.getListin()){
 				cuerpo.append(profesor.toString()+"\n");
 			}
 		});

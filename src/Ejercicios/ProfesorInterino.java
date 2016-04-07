@@ -9,7 +9,7 @@ public class ProfesorInterino extends Profesor {
 	}
 	@Override
 	public String toString() {
-		return "ProfesorInterino [fecha=" + fecha + ", toString()=" + super.toString() + "]";
+		return super.toString( )+ " Interino [ Fecha:" + fecha + "]";
 	}
 		
 }
