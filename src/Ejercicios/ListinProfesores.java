@@ -9,14 +9,10 @@ public class ListinProfesores {
 	public boolean addProfesor(Profesor profesor){
 		return sProfesor.add(profesor);
 	}
-	
-	public boolean removeProfesor(String apellido){
-		//lógica
-		return true;
+
+	public Set<Profesor> getListin(){
+		return sProfesor;
 	}
 	
-	public Set<Profesor> getLista(){
-		return this.sProfesor;
-	}
-	
+
 }

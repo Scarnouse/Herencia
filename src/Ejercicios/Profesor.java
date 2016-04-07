@@ -8,6 +8,9 @@ public class Profesor extends Persona{
 		super(nombre, dni, edad);
 		this.especialidad = especialidad;
 	}
-	//Metodos
+	@Override
+	public String toString() {
+		return "Profesor [especialidad=" + especialidad + ", toString()=" + super.toString() + "]";
+	}
 	
 }
