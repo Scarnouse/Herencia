@@ -11,7 +11,7 @@ public class PruebaInformaticos {
 		System.out.println(iA1);
 		System.out.println(iA1.pagarSueldo(15));
 		
-		iA4.setSueldo(1.9);
+		iA4.setSueldo(10.9);
 		System.out.println(iA4);
 		System.out.println(iA4.pagarSueldo(16));
 		

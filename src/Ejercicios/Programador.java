@@ -2,7 +2,7 @@ package Ejercicios;
 
 public class Programador extends InformaticoAbs{
 	//Atributos
-	public String lenguaje;
+	private String lenguaje;
 	//Constructor
 	public Programador(String empresa, String lenguaje) {
 		super(empresa);
@@ -10,7 +10,7 @@ public class Programador extends InformaticoAbs{
 	}
 	@Override
 	public double pagarSueldo(double horas) {
-		return super.pagarSueldo(horas);
+		return super.pagarSueldo(horas)*1.5;
 	}
 	@Override
 	public String toString() {

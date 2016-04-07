@@ -1,20 +1,42 @@
 package Ejercicios;
 
-import java.util.Random;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+//import java.util.Random;
 
 public class TestHerencia4 {
-	static Random aleatorio = new Random();
+	//static public Random aleatorio = new Random();
 	public static void main(String[] args) {
-		ListinProfesores lP = new ListinProfesores();
+		/*ListinProfesores lP = new ListinProfesores();
 		for (int i=0;i<50;i++) {
 			lP.addProfesor(crearProfesorAleatorio());
 		}
-		System.out.println(lP.getLista());
-		System.out.println("Numero profesores titulares: "+ProfesorTitular.numeroProfesoresTitulares);
-		System.out.println("Numero profesores interinos: "+ProfesorInterino.numeroProfesoresInterinos);
+		
+		for(Profesor profesor : lP.getLista()){
+			System.out.println(profesor);
+		}
+		System.out.println(ProfesorInterino.numeroProfesoresInterinos);
+		System.out.println(ProfesorTitular.numeroProfesoresTitulares);
+		System.out.println(lP.getLista().size());*/
+		File file = new File("recursos/profesores.csv");
+		try (Scanner sc = new Scanner(file);){
+			String linea = sc.nextLine();
+			while (sc.hasNextLine()){
+				linea = sc.nextLine();
+				String[] array = new String[6];
+				
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
-	static private Profesor crearProfesorAleatorio(){
+	
+	/*static private Profesor crearProfesorAleatorio(){
 		String[] nombre = {"Jose", "David", "Diana", "María", "Carolina", "Keith", "Francisco", "Jorge", "Angelica"};
 		String[] apellido = {"Herrería", "Roqueo", "Plaza", "Vázquez", "Canarias", "Valodouro", "Encina", "Sotelo"};
 		String[] especialidad = {"Inglés", "Educación Física", "Música", "Geografía e Historia", "Ciencias Naturales", "Matemáicas", "Lengua y Literatura"};
@@ -40,6 +62,6 @@ public class TestHerencia4 {
 		}
 		dni += NIF_STRING_ASOCIATION.charAt(Integer.parseInt(dni) % 23);
 		return dni;
-	}
+	}*/
 
 }

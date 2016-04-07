@@ -3,18 +3,13 @@ package Ejercicios;
 public class Persona {
 	//Atributos
 	private String nombre;
-	private String apellido;
 	private String dni;
+	private int edad;
 	//constructor
-	public Persona(String nombre, String apellido, String dni) {
+	public Persona(String nombre, String dni, int edad) {
 		this.nombre = nombre;
-		this.apellido = apellido;
 		this.dni = dni;
+		this.edad = edad;
 	}
-	//métodos
-	@Override
-	public String toString() {
-		return "Nombre: " + nombre + ", apellido: " + apellido + ", dni: " + dni;
-	}
-	
+
 }
