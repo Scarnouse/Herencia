@@ -19,8 +19,10 @@ import javax.swing.JButton;
 public class Herencia4Visual {
 
 	private JFrame frame;
-	ListinProfesores lista = new ListinProfesores();
-	File file = new File("recursos/profesores.csv");
+	private ListinProfesores lista = new ListinProfesores();
+	private File file = new File("recursos/profesores.csv");
+	private JTextArea cuerpo;
+	private JLabel cabecera;
 	/**
 	 * Launch the application.
 	 */
@@ -52,10 +54,10 @@ public class Herencia4Visual {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JLabel cabecera = new JLabel("Seleccione una opción");
+		cabecera = new JLabel("Seleccione una opción");
 		frame.getContentPane().add(cabecera, BorderLayout.NORTH);
 		
-		JTextArea cuerpo = new JTextArea();
+		cuerpo = new JTextArea();
 		frame.getContentPane().add(cuerpo, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
@@ -65,49 +67,43 @@ public class Herencia4Visual {
 		JButton titulares = new JButton("Titulares");
 		panel.add(titulares);
 		titulares.addActionListener(t -> {
-			cuerpo.setText("");
-			lista.getListin().clear();
-			
-			try (Scanner sc = new Scanner(file);){
-				String linea = sc.nextLine();
-				while (sc.hasNextLine()){
-					linea = sc.nextLine();
-					String[] array = linea.split(";");
-					if (array[4].contains("SI")){
-						lista.addProfesor(new ProfesorTitular(array[0], Integer.parseInt(array[1]), array[2], array[3], Integer.parseInt(array[5])));
-					}
-				}
-			} catch (FileNotFoundException e) {
-				System.out.format("No se encuentra el archivo %s%n", file);
-			}
+			volcarInformacion(true);
 			for(Profesor profesor : lista.getListin()){
 				cuerpo.append(profesor.toString()+"\n");
 			}
-			
 		});
 		
 		JButton interinos = new JButton("Interinos");
 		panel.add(interinos);
 		interinos.addActionListener(t -> {
-			cuerpo.setText("");
-			lista.getListin().clear();
-			File file = new File("recursos/profesores.csv");
-			try (Scanner sc = new Scanner(file);){
-				String linea = sc.nextLine();
-				while (sc.hasNextLine()){
-					linea = sc.nextLine();
-					String[] array = linea.split(";");
-					if (array[4].contains("NO")){
-						lista.addProfesor(new ProfesorInterino(array[0], Integer.parseInt(array[1]), array[2], array[3], array[6]));;
-					}
-				}
-			} catch (FileNotFoundException e) {
-				System.out.format("No se encuentra el archivo %s%n", file);
-			}
+			volcarInformacion(false);
 			for(Profesor profesor : lista.getListin()){
 				cuerpo.append(profesor.toString()+"\n");
 			}
 		});
+	}
+	
+	public void volcarInformacion(boolean titular){
+		cuerpo.setText("");
+		lista.getListin().clear();
+		try (Scanner sc = new Scanner(file);){
+			String linea = sc.nextLine();
+			while (sc.hasNextLine()){
+				linea = sc.nextLine();
+				String[] array = linea.split(";");
+				if (titular && array[4].contains("SI")){
+					lista.addProfesor(new ProfesorTitular(array[0], Integer.parseInt(array[1]), array[2], array[3], Integer.parseInt(array[5])));
+					cabecera.setText("Profesores Titulares");
+					
+				} else  if (!titular && array[4].contains("NO")){
+					lista.addProfesor(new ProfesorInterino(array[0], Integer.parseInt(array[1]), array[2], array[3], array[6]));
+					cabecera.setText("Profesores Interinos");
+				}
+				
+			}
+		} catch (FileNotFoundException e) {
+			System.out.format("No se encuentra el archivo %s%n", file);
+		}
 	}
 
 }
