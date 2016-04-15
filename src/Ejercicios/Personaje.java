@@ -6,18 +6,24 @@ public class Personaje {
 	Random aleatorio = new Random();
 	private String nombre;
 	private int nivelEnegia;
-	public Personaje(String nombre) {
+	public Personaje(String nombre, int nivelEnergia) {
 		this.nombre = nombre;
-		this.nivelEnegia = aleatorio.nextInt(100)+1;
+		this.nivelEnegia = nivelEnergia;
 	}
-	public int getNivelEnegia() {
+	public int getNivelEnergia() {
 		return nivelEnegia;
 	}
-	public void setNivelEnegia(int nivelEnegia) {
+	public void setNivelEnergia(int nivelEnegia) {
 		this.nivelEnegia = nivelEnegia;
 	}
 	public void alimentar(int comida){
 		this.nivelEnegia += comida;
 	}
+	
+	@Override
+	public String toString() {
+		return "Personaje [Nombre=" + this.nombre + ", Enegia=" + nivelEnegia + "]";
+	}
+	
 	
 }

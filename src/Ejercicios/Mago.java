@@ -1,17 +1,18 @@
 package Ejercicios;
 
 public class Mago extends Personaje{
-	private Poder poder;
+	private String poder;
 
-	public Mago(String nombre, Poder poder) {
-		super(nombre);
+	public Mago(String nombre, String poder) {
+		super(nombre, 100);
 		this.poder = poder;
-		setNivelEnegia(100);
 	}
-	
-	public int encantar(){
-		setNivelEnegia(getNivelEnegia()-this.poder.getEnergia());
-		return this.poder.getDamage();
+
+	public String encantar(){
+		if (this.getNivelEnergia()>=2){
+			this.setNivelEnergia(this.getNivelEnergia()-2);
+			return getNivelEnergia()+"";
+		} else return "No es posible encantar";
 	}
 
 }
